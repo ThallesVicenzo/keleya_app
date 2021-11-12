@@ -5,7 +5,7 @@ import 'package:keleya_app/routes/named_routes.dart';
 class Pages {
   static Map<String, WidgetBuilder> all(BuildContext context) {
     return {
-      NamedRoutes.home:(context) => WelcomeScreen(),
+      NamedRoutes.home: (context) => WelcomeScreen(),
     };
   }
 }

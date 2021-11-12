@@ -11,8 +11,9 @@ class KeleyaApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(initialRoute: NamedRoutes.home, routes: Pages.all(context),);
+    return MaterialApp(
+      initialRoute: NamedRoutes.home,
+      routes: Pages.all(context),
+    );
   }
-
 }
-
