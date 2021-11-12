@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keleya_app/routes/named_routes.dart';
 import 'package:keleya_app/routes/pages.dart';
-import 'Screens/welcome_screen.dart';
 
 void main() {
   runApp(KeleyaApp());
