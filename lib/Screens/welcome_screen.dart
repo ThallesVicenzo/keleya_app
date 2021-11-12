@@ -54,8 +54,10 @@ class WelcomeScreen extends StatelessWidget {
                       RoundedButton(
                         onPressed: null,
                         title: 'Register',
-                        color: Color(0xff5a4fd9),
-                        style: TextStyle(color: Colors.white),
+                        color: Color(0xfff3ecff),
+                        style: TextStyle(
+                          color: Color(0xff5a4fd9),
+                        ),
                       ),
                     ],
                   ),
