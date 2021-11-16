@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class WhiteMenu extends StatelessWidget {
-  WhiteMenu({this.child});
+  WhiteMenu({this.child, this.title});
 
   final Widget child;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,7 @@ class WhiteMenu extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Are you already a Kaleya user?',
+                title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.white,

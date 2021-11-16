@@ -11,6 +11,7 @@ class WelcomeScreen extends StatelessWidget {
       backgroundColor: Color(0xff5a4fd9),
       body: SafeArea(
         child: WhiteMenu(
+          title: 'Are you already a Keleya user?',
           child: Padding(
             padding: EdgeInsets.all(16),
             child: Column(
