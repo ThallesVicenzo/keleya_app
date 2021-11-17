@@ -3,6 +3,7 @@ import 'package:keleya_app/Screens/welcome_screen.dart';
 import 'package:keleya_app/routes/named_routes.dart';
 import 'package:keleya_app/screens/sign_in_screen.dart';
 import 'package:keleya_app/screens/sign_up_screen.dart';
+import 'package:keleya_app/screens/success_screen.dart';
 
 class Pages {
   static Map<String, WidgetBuilder> all(BuildContext context) {
@@ -10,6 +11,7 @@ class Pages {
       NamedRoutes.home: (context) => WelcomeScreen(),
       NamedRoutes.signIn: (context) => SignInScreen(),
       NamedRoutes.signUp: (context) => SignUpScreen(),
+      NamedRoutes.success: (context) => SuccessScreen(),
     };
   }
 }
