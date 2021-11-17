@@ -74,7 +74,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               RoundedButton(
                 title: 'Sign In',
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.white, fontSize: 18,),
                 color: kThemeColor,
                 onPressed: () async {
                   try {
