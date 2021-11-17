@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:keleya_app/routes/named_routes.dart';
+import 'package:keleya_app/widgets/rounded_buttons.dart';
 import 'package:keleya_app/widgets/white_menu.dart';
 import 'package:keleya_app/constants.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignInScreen extends StatefulWidget {
   @override
@@ -13,11 +16,16 @@ class _SignInScreenState extends State<SignInScreen> {
   String password;
   String email;
   bool isPasswordVisible = false;
+  final _auth = FirebaseAuth.instance;
+
+  void getCurrentUser() {
+    final user = _auth.currentUser();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff5a4fd9),
+      backgroundColor: kThemeColor,
       body: SafeArea(
         child: WhiteMenu(
           title: 'Great to have you back!',
@@ -48,6 +56,11 @@ class _SignInScreenState extends State<SignInScreen> {
                 onChanged: (value) => password = value,
                 decoration: kTextFieldDecoration.copyWith(
                   hintText: 'Type your password here ',
+                  counterText: 'Forgot your password?',
+                  counterStyle: TextStyle(
+                    color: kThemeColor,
+                    fontSize: 13,
+                  ),
                   suffixIcon: IconButton(
                     icon: isPasswordVisible
                         ? Icon(Icons.visibility_off)
@@ -58,6 +71,22 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
                 obscureText: isPasswordVisible,
+              ),
+              RoundedButton(
+                title: 'Sign In',
+                style: TextStyle(color: Colors.white),
+                color: kThemeColor,
+                onPressed: () async {
+                  try {
+                    final newUser = await _auth.createUserWithEmailAndPassword(
+                        email: email, password: password);
+                    if (newUser != null) {
+                      Navigator.pushNamed(context, NamedRoutes.success);
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                },
               ),
             ],
           ),
