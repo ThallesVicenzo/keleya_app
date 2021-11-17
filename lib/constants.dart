@@ -16,3 +16,5 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(10.0)),
   ),
 );
+
+const kThemeColor = Color(0xff5a4fd9);
