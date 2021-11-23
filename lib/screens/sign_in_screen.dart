@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:keleya_app/routes/named_routes.dart';
 import 'package:keleya_app/widgets/rounded_buttons.dart';
 import 'package:keleya_app/widgets/white_menu.dart';
