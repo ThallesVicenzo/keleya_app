@@ -5,6 +5,7 @@ import 'package:keleya_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:keleya_app/widgets/rounded_buttons.dart';
 import 'package:keleya_app/routes/pages.dart';
+import 'package:flutter/cupertino.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -15,8 +16,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
   String email;
   String password;
   String confirmPassword;
+  bool isChecked = false;
   bool isPasswordVisible = false;
   final _auth = FirebaseAuth.instance;
+
+  Future<void> verifyForm(BuildContext context) async {
+    if (password == confirmPassword) {
+      try {
+        final newUser = await _auth.createUserWithEmailAndPassword(
+            email: email, password: password);
+        if (newUser != null) {
+          Navigator.pushNamed(context, NamedRoutes.name);
+        }
+      } on Exception catch (e) {
+        showSnackBar(
+          context,
+          'wrong password',
+        );
+        print(e);
+      }
+    } else {
+      showSnackBar(context, 'error');
+    }
+  }
+
+  void showSnackBar(BuildContext context, String content) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: kThemeColor,
+        content: Text(content),
+        duration: const Duration(seconds: 2),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,27 +97,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               TextField(
                 onChanged: (value) => confirmPassword = value,
-                obscureText: true,
+                obscureText: isPasswordVisible,
                 decoration: kTextFieldDecoration.copyWith(
-                    hintText: 'Confirm your password here'),
+                  hintText: 'Confirm your password here',
+                ),
               ),
               RoundedButton(
                 title: 'Create an account',
-                style: TextStyle(color: Colors.white, fontSize: 18,),
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
                 color: kThemeColor,
-                onPressed: () async {
-                  try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
-                        email: email, password: password);
-                    if (newUser != null) {
-                      Navigator.pushNamed(context, NamedRoutes.name);
-                    }
-                  } catch (e) {
-                    print(e);
-                  }
-                },
+                onPressed: () async => verifyForm(context),
               ),
-              Checkbox(value: null, onChanged: null)
+              Checkbox(
+                tristate: false,
+                value: isChecked,
+                onChanged: (bool value) {
+                  setState(() {
+                    isChecked = value;
+                  });
+                },
+              )
             ],
           ),
         ),
