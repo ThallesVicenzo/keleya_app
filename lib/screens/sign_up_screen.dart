@@ -4,7 +4,6 @@ import 'package:keleya_app/widgets/white_menu.dart';
 import 'package:keleya_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:keleya_app/widgets/rounded_buttons.dart';
-import 'package:keleya_app/routes/pages.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -19,7 +18,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isPasswordVisible = false;
   final _auth = FirebaseAuth.instance;
 
-  Future<void> verifyForm(BuildContext context) async {
+  Future <void> verifyForm(BuildContext context) async {
     if (password == confirmPassword) {
       try {
         final newUser = await _auth.createUserWithEmailAndPassword(
@@ -27,15 +26,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
         if (newUser != null) {
           Navigator.pushNamed(context, NamedRoutes.name);
         }
-      } on Exception catch (e) {
-        showSnackBar(
-          context,
-          'wrong password',
-        );
+      } catch (e) {
         print(e);
       }
     } else {
-      showSnackBar(context, 'error');
+      showSnackBar(context, 'Password does not match');
     }
   }
 
