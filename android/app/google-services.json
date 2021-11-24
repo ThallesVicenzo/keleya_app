@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:630663501360:android:0848d1c0aacb465ce8bff5",
+        "mobilesdk_app_id": "1:630663501360:android:2c70dc0c7b04f27de8bff5",
         "android_client_info": {
-          "package_name": "keleyaApp.id"
+          "package_name": "com.example.keleya_app"
         }
       },
       "oauth_client": [
