@@ -76,7 +76,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 color: kThemeColor,
                 onPressed: () async {
                   try {
-                    final newUser = await _auth.createUserWithEmailAndPassword(
+                    final newUser = await _auth.signInWithEmailAndPassword(
                         email: email, password: password);
                     if (newUser != null) {
                       Navigator.pushNamed(context, NamedRoutes.success);
