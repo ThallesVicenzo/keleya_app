@@ -5,7 +5,6 @@ import 'package:keleya_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:keleya_app/widgets/rounded_buttons.dart';
 import 'package:keleya_app/routes/pages.dart';
-import 'package:flutter/cupertino.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
