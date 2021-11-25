@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:keleya_app/routes/named_routes.dart';
 import 'package:keleya_app/widgets/white_menu.dart';
@@ -23,19 +22,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Future<void> verifyForm(BuildContext context) async {
     if (password == confirmPassword) {
-      try {
+      if (isChecked && isCheckedTwo != false) {
         final newUser = await _auth.createUserWithEmailAndPassword(
             email: email, password: password);
         if (newUser != null) {
           Navigator.pushNamed(context, NamedRoutes.name);
         }
-      } catch (e) {
-        print(e);
+      }
+      else {
+        showSnackBar(context, 'Please, accept the terms');
       }
     } else {
-      showSnackBar(context, 'Password does not match');
+      showSnackBar(context, 'Please match your password');
     }
-  }
+}
 
   void showSnackBar(BuildContext context, String content) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -46,20 +46,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-
-  void textButton() {
-    TextButton(
-      child: Text('Sign in'),
-      onPressed: () {
-        setState(
-          () {
-            Navigator.pushNamed(context, NamedRoutes.signIn);
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
